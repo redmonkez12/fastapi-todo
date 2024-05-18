@@ -1,0 +1,3 @@
+# Nixpacks configuration for Python on Railway
+providers = ["python"]
+pkgs = ["python311"]
