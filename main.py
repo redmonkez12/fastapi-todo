@@ -24,6 +24,10 @@ async def on_startup():
 from sqlalchemy.exc import NoResultFound
 
 
+@app.get("/")
+def index():
+    return "App is running"
+
 @app.post("/todos", response_model=Todo)
 async def create_todo(*, data: CreateTodoRequest, todo_service: TodoService = Depends(get_todo_service)):
     return await todo_service.create_todo(data)
