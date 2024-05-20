@@ -4,7 +4,7 @@ from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer
 
 from deps import get_user_service
-from jwt_token import SECRET_KEY, ALGORITHM
+from .jwt_token import SECRET_KEY, ALGORITHM
 from services.user_service import UserService
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

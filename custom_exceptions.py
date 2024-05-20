@@ -12,3 +12,7 @@ class EmailDuplicationException(Exception):
 
 class InvalidData(Exception):
     pass
+
+
+class TodoDuplicationException(Exception):
+    pass

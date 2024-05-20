@@ -4,7 +4,7 @@ import asyncpg
 from sqlmodel import Session, select
 from sqlalchemy import exc
 
-from password import hash_password, verify_password
+from auth.password import hash_password, verify_password
 from custom_exceptions import EmailDuplicationException, UserNotFoundException
 from models.user import User
 from requests import CreateUserRequest, LoginRequest

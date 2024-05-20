@@ -1,11 +1,9 @@
-from dotenv import dotenv_values
+from decouple import config
 from pydantic import BaseModel
 from jose import jwt
 from datetime import datetime, timedelta, timezone
 
-config = dotenv_values("./.env")
-
-SECRET_KEY = config.get("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -20,6 +18,9 @@ class TokenData(BaseModel):
 
 
 def create_access_token(data: dict):
-    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    data.update({"exp": expire})
-    return jwt.encode(data, SECRET_KEY, algorithm=ALGORITHM)
+    try:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        data.update({"exp": expire})
+        return jwt.encode(data, SECRET_KEY, algorithm=ALGORITHM)
+    except Exception as e:
+        print(e)
